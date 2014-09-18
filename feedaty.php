@@ -554,10 +554,10 @@ class Feedaty extends Module
 
 		/* If isn't we add a new row */
 		if ($count == 0)
-			$q = 'INSERT INTO `'._DB_PREFIX_.'feedaty_cache` (`id_key`, `value`, `expiration`) values (\''.pSQL((string)$id).'\',\''.pSQL((string)$value,true).'\',\''.pSQL((int)$expiration).'\') ';
+			$q = 'INSERT INTO `'._DB_PREFIX_.'feedaty_cache` (`id_key`, `value`, `expiration`) values (\''.pSQL((string)$id).'\',\''.pSQL(str_replace(array('"','\n','\r'),array('\"','',''),(string)$value),true).'\',\''.pSQL((int)$expiration).'\') ';
 		/* If there is already a value we update its content */
 		else
-			$q = 'UPDATE `'._DB_PREFIX_.'feedaty_cache` SET `value` = \''.pSQL((string)$value,true).'\', `expiration` = \''.pSQL((int)$expiration).'\' WHERE `id_key` = \''.pSQL((string)$id).'\'';
+			$q = 'UPDATE `'._DB_PREFIX_.'feedaty_cache` SET `value` = \''.pSQL(str_replace(array('"','\n','\r'),array('\"','',''),(string)$value),true).'\', `expiration` = \''.pSQL((int)$expiration).'\' WHERE `id_key` = \''.pSQL((string)$id).'\'';
 		Db::getInstance()->Execute($q);
 		return true;
 	}
