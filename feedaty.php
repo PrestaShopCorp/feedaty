@@ -33,7 +33,7 @@ class Feedaty extends Module
 	{
 		$this->name = 'feedaty';
 		$this->tab = 'front_office_features';
-		$this->version = '1.2.0';
+		$this->version = '1.2.1';
 		$this->author = 'Feedaty.com';
 		$this->need_instance = 0;
 
@@ -41,7 +41,6 @@ class Feedaty extends Module
 
 		$this->displayName = $this->l('Feedaty');
 		$this->description = $this->l('Add the Feedaty review system into your PrestaShop');
-
 
 		/* Old PrestaShop version, load the backward compatibility */
 	    require(_PS_MODULE_DIR_.$this->name.'/backward_compatibility/backward.php');
