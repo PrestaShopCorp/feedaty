@@ -21,7 +21,7 @@
 * @author    Feedaty <info@feedaty.com>
 * @copyright 2012-2014 Feedaty
 * @license   http://opensource.org/licenses/afl-3.0.php Academic Free License (AFL 3.0)
-* @version   Release: 1.1.8 $
+* @version   Release: 1.2.2 $
 */
 
 if (!defined('_PS_VERSION_'))
@@ -33,7 +33,7 @@ class Feedaty extends Module
 	{
 		$this->name = 'feedaty';
 		$this->tab = 'front_office_features';
-		$this->version = '1.2.1';
+		$this->version = '1.2.2';
 		$this->author = 'Feedaty.com';
 		$this->need_instance = 0;
 
@@ -532,7 +532,7 @@ class Feedaty extends Module
 		$cache = Db::getInstance()->getRow($q, false);
 
 		if (isset($cache['value']) && Tools::strlen($cache['value']) > 0)
-			return $cache['value'];
+			return base64_decode($cache['value']);
 		else
 			return false;
 	}
@@ -553,10 +553,10 @@ class Feedaty extends Module
 
 		/* If isn't we add a new row */
 		if ($count == 0)
-			$q = 'INSERT INTO `'._DB_PREFIX_.'feedaty_cache` (`id_key`, `value`, `expiration`) values (\''.pSQL((string)$id).'\',\''.pSQL(str_replace(array('"','\n','\r'),array('\"','',''),(string)$value),true).'\',\''.pSQL((int)$expiration).'\') ';
+			$q = 'INSERT INTO `'._DB_PREFIX_.'feedaty_cache` (`id_key`, `value`, `expiration`) values (\''.pSQL((string)$id).'\',\''.pSQL((string)base64_encode($value)).'\',\''.pSQL((int)$expiration).'\') ';
 		/* If there is already a value we update its content */
 		else
-			$q = 'UPDATE `'._DB_PREFIX_.'feedaty_cache` SET `value` = \''.pSQL(str_replace(array('"','\n','\r'),array('\"','',''),(string)$value),true).'\', `expiration` = \''.pSQL((int)$expiration).'\' WHERE `id_key` = \''.pSQL((string)$id).'\'';
+			$q = 'UPDATE `'._DB_PREFIX_.'feedaty_cache` SET `value` = \''.pSQL((string)base64_encode($value)).'\', `expiration` = \''.pSQL((int)$expiration).'\' WHERE `id_key` = \''.pSQL((string)$id).'\'';
 		Db::getInstance()->Execute($q);
 		return true;
 	}
