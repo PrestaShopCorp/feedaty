@@ -19,9 +19,9 @@
 * needs please refer to http://www.prestashop.com for more information.
 *
 * @author    Feedaty <info@feedaty.com>
-* @copyright 2012-2014 Feedaty
+* @copyright 2012-2015 Feedaty
 * @license   http://opensource.org/licenses/afl-3.0.php Academic Free License (AFL 3.0)
-* @version   Release: 1.2.2 $
+* @version   Release: 1.2.3 $
 */
 
 if (!defined('_PS_VERSION_'))
@@ -33,7 +33,7 @@ class Feedaty extends Module
 	{
 		$this->name = 'feedaty';
 		$this->tab = 'front_office_features';
-		$this->version = '1.2.2';
+		$this->version = '1.2.3';
 		$this->author = 'Feedaty.com';
 		$this->need_instance = 0;
 
@@ -594,7 +594,7 @@ class Feedaty extends Module
 	private function fdGenerateStars($data)
 	{
 		if (!isset($data)) $data = 0;
-		return '<img src="http://'.'www.feedaty.com/rating/rate-small-'.(int)$data.'.png" height="15">';
+		return '<img src="//'.'widget.zoorate.com/rating/rate-small-'.(int)$data.'.png" height="15">';
 	}
 
 	public function fetchTemplate($name)
