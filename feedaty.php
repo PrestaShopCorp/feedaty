@@ -594,7 +594,7 @@ class Feedaty extends Module
 	private function fdGenerateStars($data)
 	{
 		if (!isset($data)) $data = 0;
-		return '<img src="//'.'widget.zoorate.com/rating/rate-small-'.(int)$data.'.png" height="15">';
+		return '<img src="//widget.zoorate.com/rating/rate-small-'.(int)$data.'.png" height="15">';
 	}
 
 	public function fetchTemplate($name)
