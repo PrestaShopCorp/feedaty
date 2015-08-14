@@ -498,13 +498,19 @@ class Feedaty extends Module
 			$toview['link'] = '<a href="'.$toview['data_review']['Product']['Url'].'" target="_blank">'.$this->l('Read all reviews').'</a>';
 
 			/* Generate stars img */
+			$sum_stars=0;
 			if (is_array($toview['data_review']['Feedbacks']))
-				foreach ($toview['data_review']['Feedbacks'] as $k => $v)
+				foreach ($toview['data_review']['Feedbacks'] as $k => $v){
 					$toview['data_review']['Feedbacks'][$k]['stars_html'] = $this->fdGenerateStars($v['ProductRating']);
-
+					$toview['data_review']['Feedbacks'][$k]['stars_num'] = $v['ProductRating'];
+					$sum_stars = $sum_stars+$v['ProductRating'];
+				}
+			$avg_rating=round( $sum_stars/$toview['count_review'] );
 			/* Send vars to smarty */
 			$this->smarty->assign('data_review', $toview['data_review']);
 			$this->smarty->assign('count_review', $toview['count_review']);
+			$this->smarty->assign('avg_rating', $avg_rating );
+			$this->smarty->assign('avg_rating_stars',$this->fdGenerateStars($avg_rating));
 			$this->smarty->assign('feedaty_link', $toview['link']);
 			/* Finally retrive template */
 			return $this->fetchTemplate('/views/templates/front/productTabContent.tpl');
