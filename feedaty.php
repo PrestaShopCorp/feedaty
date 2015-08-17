@@ -508,7 +508,6 @@ class Feedaty extends Module
 			$tot_review=count($toview['data_review']['Feedbacks']);
 			$avg_rating=round( ( $sum_stars/$tot_review ),1 );
 			$avg_rating_stars=round( ( $sum_stars/$tot_review ) );
-			echo "<!-- ".$sum_stars." / ".$tot_review." -->";
 			/* Send vars to smarty */
 			$this->smarty->assign('data_review', $toview['data_review']);
 			$this->smarty->assign('count_review', $toview['count_review']);
