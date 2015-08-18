@@ -510,7 +510,7 @@ class Feedaty extends Module
 			$avg_rating_stars=round( ( $sum_stars/$tot_review ) );
 			/* Send vars to smarty */
 			$this->smarty->assign('data_review', $toview['data_review']);
-			$this->smarty->assign('count_review', $toview['count_review']);
+			$this->smarty->assign('count_review', $tot_review);
 			$this->smarty->assign('avg_rating', $avg_rating );
 			$this->smarty->assign('avg_rating_stars',$this->fdGenerateStars($avg_rating_stars));
 			$this->smarty->assign('feedaty_link', $toview['link']);
